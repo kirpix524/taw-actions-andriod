@@ -1,6 +1,6 @@
-package com.surovcevnv.tradeandwarehouse.main;
+package com.surovcevnv.tawactions.main;
 
-import com.surovcevnv.tradeandwarehouse.logger.Logger;
+import com.surovcevnv.tawactions.logger.Logger;
 
 import org.json.JSONObject;
 

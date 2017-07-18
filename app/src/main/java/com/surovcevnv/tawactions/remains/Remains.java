@@ -1,11 +1,11 @@
-package com.surovcevnv.tradeandwarehouse.remains;
+package com.surovcevnv.tawactions.remains;
 
 /**
  * Created by surovcevnv on 04.07.17.
  */
 
-import com.surovcevnv.tradeandwarehouse.main.Server;
-import com.surovcevnv.tradeandwarehouse.main.Singleton;
+import com.surovcevnv.tawactions.main.Server;
+import com.surovcevnv.tawactions.main.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;

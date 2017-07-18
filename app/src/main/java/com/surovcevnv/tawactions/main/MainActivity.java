@@ -1,4 +1,4 @@
-package com.surovcevnv.tradeandwarehouse.main;
+package com.surovcevnv.tawactions.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +12,15 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.surovcevnv.tradeandwarehouse.R;
-import com.surovcevnv.tradeandwarehouse.actions.ActionsActivity;
-import com.surovcevnv.tradeandwarehouse.actions.SprActions;
-import com.surovcevnv.tradeandwarehouse.comings.ComingActivity;
-import com.surovcevnv.tradeandwarehouse.expenses.ExpenseActivity;
-import com.surovcevnv.tradeandwarehouse.logger.Logger;
-import com.surovcevnv.tradeandwarehouse.remains.RemainsActivity;
-import com.surovcevnv.tradeandwarehouse.remains.Remains;
-import com.surovcevnv.tradeandwarehouse.comings.SprNom;
+import com.surovcevnv.tawactions.R;
+import com.surovcevnv.tawactions.actions.ActionsActivity;
+import com.surovcevnv.tawactions.actions.SprActions;
+import com.surovcevnv.tawactions.comings.ComingActivity;
+import com.surovcevnv.tawactions.expenses.ExpenseActivity;
+import com.surovcevnv.tawactions.logger.Logger;
+import com.surovcevnv.tawactions.remains.RemainsActivity;
+import com.surovcevnv.tawactions.remains.Remains;
+import com.surovcevnv.tawactions.comings.SprNom;
 
 public class MainActivity extends AppCompatActivity {
     private Singleton ms = Singleton.getInstance();

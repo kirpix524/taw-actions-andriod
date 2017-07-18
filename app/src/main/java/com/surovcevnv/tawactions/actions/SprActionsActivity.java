@@ -1,22 +1,16 @@
-package com.surovcevnv.tradeandwarehouse.actions;
+package com.surovcevnv.tawactions.actions;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
-import com.surovcevnv.tradeandwarehouse.R;
-import com.surovcevnv.tradeandwarehouse.main.Server;
-import com.surovcevnv.tradeandwarehouse.main.Singleton;
+import com.surovcevnv.tawactions.R;
+import com.surovcevnv.tawactions.main.Server;
+import com.surovcevnv.tawactions.main.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;

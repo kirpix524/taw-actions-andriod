@@ -1,4 +1,4 @@
-package com.surovcevnv.tradeandwarehouse;
+package com.surovcevnv.tawactions;
 
 import org.junit.Test;
 

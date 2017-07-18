@@ -1,4 +1,4 @@
-package com.surovcevnv.tradeandwarehouse.logger;
+package com.surovcevnv.tawactions.logger;
 
 /**
  * Created by surovcevnv on 08.07.17.

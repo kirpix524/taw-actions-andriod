@@ -1,25 +1,13 @@
-package com.surovcevnv.tradeandwarehouse.main;
+package com.surovcevnv.tawactions.main;
 
 /**
  * Created by surovcevnv on 06.07.17.
  */
 
-import android.widget.Toast;
-
-import com.surovcevnv.tradeandwarehouse.actions.Actions;
-import com.surovcevnv.tradeandwarehouse.actions.SprActions;
-import com.surovcevnv.tradeandwarehouse.remains.Remains;
-import com.surovcevnv.tradeandwarehouse.comings.SprNom;
-
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import com.surovcevnv.tradeandwarehouse.logger.Logger;
+import com.surovcevnv.tawactions.actions.Actions;
+import com.surovcevnv.tawactions.actions.SprActions;
+import com.surovcevnv.tawactions.remains.Remains;
+import com.surovcevnv.tawactions.comings.SprNom;
 
 
 public class Singleton {

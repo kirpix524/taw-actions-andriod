@@ -1,4 +1,4 @@
-package com.surovcevnv.tradeandwarehouse.main.interf;
+package com.surovcevnv.tawactions.main.interf;
 
 /**
  * Created by surovcevnv on 30.06.17.

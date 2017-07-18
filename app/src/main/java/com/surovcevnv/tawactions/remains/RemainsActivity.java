@@ -1,12 +1,12 @@
-package com.surovcevnv.tradeandwarehouse.remains;
+package com.surovcevnv.tawactions.remains;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
-import com.surovcevnv.tradeandwarehouse.R;
-import com.surovcevnv.tradeandwarehouse.main.Singleton;
+import com.surovcevnv.tawactions.R;
+import com.surovcevnv.tawactions.main.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;

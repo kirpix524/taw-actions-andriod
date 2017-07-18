@@ -1,6 +1,6 @@
-package com.surovcevnv.tradeandwarehouse.actions;
+package com.surovcevnv.tawactions.actions;
 
-import com.surovcevnv.tradeandwarehouse.main.Singleton;
+import com.surovcevnv.tawactions.main.Singleton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
