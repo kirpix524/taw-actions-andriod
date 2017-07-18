@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#444444</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <!-- Цветовая схема для заданий -->
+    <color name="task_status">#c0c0c0</color>
+    <color name="task_select">#fdeaa8</color>
+    <color name="task_first">#000000</color>
+    <color name="task_second">#444444</color>
+    <color name="task_tabno">#1a4780</color>
+    <color name="task_head">#ffe5b4</color>
+    <color name="green_tea">#d0f0c0</color>
+    <color name="blue_sea">#e4f1e8</color>
+    <color name="dark_green">#008000</color>
+    <color name="red">#cd5c5c</color>
+
+</resources>
+
