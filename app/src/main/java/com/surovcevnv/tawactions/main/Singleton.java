@@ -21,6 +21,7 @@ public class Singleton {
     public String routeAddMove = "";
     public String routeAddOst = "";
     public String routeInit = "";
+    public String routeLogin = "";
     private Singleton (){
     }
 

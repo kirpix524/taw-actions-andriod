@@ -8,4 +8,5 @@ public interface Const {
     String REMAINS = "remains_array";
     String NOMEN = "nomen_array";
     String ACTIONS = "actions_array";
+    String EXTRA_SOTR = "extra_sotr";
 }

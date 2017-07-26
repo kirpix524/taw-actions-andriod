@@ -79,7 +79,11 @@ public class Server {
         }).start();
     }
 
-    private static void sendData(String path, JSONObject config) {
+    public static JSONObject getResponse(String path, JSONObject config) {
+        return sendData(path, config);
+    }
+
+    private static JSONObject sendData(String path, JSONObject config) {
         Logger.log(Logger.Level.System, "Server", "Start sending data, path="+path);
         URL url = null;
         BufferedReader reader=null;
@@ -105,9 +109,10 @@ public class Server {
                 buf.append(line + "\n");
             }
             resultJson = buf.toString();
+            dataJsonObj = new JSONObject(resultJson);
         } catch (Exception e) {
             Logger.log(Logger.Level.System, "Server", "Error: "+e.toString());
-            return;
         }
+        return dataJsonObj;
     }
 }

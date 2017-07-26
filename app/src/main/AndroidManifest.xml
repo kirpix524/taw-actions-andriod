@@ -29,6 +29,7 @@
         <activity android:name="com.surovcevnv.tawactions.expenses.ExpenseActivity"></activity>
         <activity android:name="com.surovcevnv.tawactions.actions.ActionsActivity"></activity>
         <activity android:name="com.surovcevnv.tawactions.actions.SprActionsActivity"></activity>
+        <activity android:name="com.surovcevnv.tawactions.typeactions.TypeActionsActivity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.surovcevnv.tawactions.R;
@@ -17,13 +18,19 @@ import com.surovcevnv.tawactions.actions.ActionsActivity;
 import com.surovcevnv.tawactions.actions.SprActions;
 import com.surovcevnv.tawactions.comings.ComingActivity;
 import com.surovcevnv.tawactions.expenses.ExpenseActivity;
+import com.surovcevnv.tawactions.lib.MDialog;
 import com.surovcevnv.tawactions.logger.Logger;
+import com.surovcevnv.tawactions.main.interf.Const;
 import com.surovcevnv.tawactions.remains.RemainsActivity;
 import com.surovcevnv.tawactions.remains.Remains;
 import com.surovcevnv.tawactions.comings.SprNom;
+import com.surovcevnv.tawactions.typeactions.TypeActionsActivity;
+
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private Singleton ms = Singleton.getInstance();
+    private MDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Logger.init(getApplicationContext());
@@ -33,60 +40,65 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Создание обращения в техподдержку", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        loadSprNom();
-        loadRemains();
-        loadSprActions();
         init();
 
-        Button btnComings = (Button) findViewById(R.id.btnComings);
-        btnComings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showComings();
-            }
-        });
+    }
 
-        Button btnRemains = (Button) findViewById(R.id.btnRemaining);
-        btnRemains.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showRemains();
-            }
-        });
+    /** Обработчик кнопок **/
+    public void onClick(View v) {
+        EditText edit = (EditText) findViewById(R.id.pin_code);
+        switch (v.getId()) {
+            case R.id.btn_clear:
+                edit.setText("");
+                break;
+            case R.id.btn_enter:
+                if (edit.getText().toString().equals("")) return;
+                Logger.log(Logger.Level.System, this, "Pressed enter with PK "+edit.getText().toString());
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        login();
+                    }
+                }).start();
+                break;
+            default:
+                edit.append(v.getTag().toString());
+                break;
+        }
+    }
 
-        Button btnExpenses = (Button) findViewById(R.id.btnExpenses);
-        btnExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showExpenses();
-            }
-        });
+    /** Проверяет данные сотрудника по пин-коду **/
+    private void login() {
+        // Авторизация
+        EditText edit = (EditText) findViewById(R.id.pin_code);
+        Sotr sotr;
+        mDialog.showProgress(getString(R.string.dialog_wait), getString(R.string.dialog_load_data));
+        JSONObject config = new JSONObject();
+        try {
+            config.put("pk",edit.getText().toString());
+        } catch (Exception e) {
+            Logger.log(Logger.Level.System, "Server", "Error: "+e.toString());
+            mDialog.showBox(getString(R.string.dialog_error),e.getMessage());
+            return;
+        }
 
-        Button btnActions = (Button) findViewById(R.id.btnActions);
-        btnActions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showActions();
-            }
-        });
+        try {
+            JSONObject response = Server.getResponse(ms.serverPath+ms.routeLogin, config);
+            sotr = new Sotr(response.getString("name_sotr"), response.getString("id_sotr"), response.getString("id_role"),response.getString("name_dolgn"));
+        } catch (Exception e) {
+            mDialog.showBox(getString(R.string.dialog_error), e.getMessage());
+            return;
+        }
+        mDialog.hide();
+        Intent intent = new Intent(MainActivity.this, TypeActionsActivity.class);
+        intent.putExtra(Const.EXTRA_SOTR, sotr);
+        startActivity(intent);
+    }
 
-        Button btnInit = (Button) findViewById(R.id.btnInit);
-        btnInit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Server.sendInit();
-            }
-        });
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+
     }
 
     @Override
@@ -103,14 +115,6 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "Настройка параметров работы!", Toast.LENGTH_SHORT);
-            toast.show();
-            return true;
-        }
-
         if (id == R.id.action_uselocalip) {
             ms.serverPath =getResources().getString(R.string.serverPathLoc);
             Server.sendInit();
@@ -120,46 +124,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showComings() {
-        Intent intent = new Intent(MainActivity.this,ComingActivity.class);
-        startActivity(intent);
-    }
-
-    private void showRemains() {
-        Intent intent=new Intent(MainActivity.this, RemainsActivity.class);
-        startActivity(intent);
-    }
-
-    private void showExpenses() {
-        Intent intent=new Intent(MainActivity.this, ExpenseActivity.class);
-        startActivity(intent);
-    }
-
-    private void showActions() {
-        Intent intent=new Intent(MainActivity.this, ActionsActivity.class);
-        startActivity(intent);
-    }
-
     protected  void init() {
         ms.serverPath =getResources().getString(R.string.serverPath);
         ms.routeAddMove=getResources().getString(R.string.routeAddMove);
         ms.routeAddOst=getResources().getString(R.string.routeAddOst);
         ms.routeInit=getResources().getString(R.string.routeInit);
         Server.sendInit();
-    }
-    protected void loadSprNom() { //Получение справочника номенклатуры
-        ms.sprNom = new SprNom(getResources().getStringArray(R.array.spr_nom));
-    }
-
-    private void loadRemains() {
-        ms.remains = new Remains();
-    }
-
-    private void loadSprActions() {
-        ms.sprActions = new SprActions(getResources().getStringArray(R.array.spr_act));
-    }
-
-    private void loadActions() {
-
     }
 }

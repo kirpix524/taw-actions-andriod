@@ -1,5 +1,21 @@
 <resources>
-    <string name="app_name">Макет программы учета на производстве</string>
+    <!-- Клавиатура -->
+    <string name="keyboard_0">&quot;0&quot;</string>
+    <string name="keyboard_1">&quot;1&quot;</string>
+    <string name="keyboard_2">&quot;2&quot;</string>
+    <string name="keyboard_3">&quot;3&quot;</string>
+    <string name="keyboard_4">&quot;4&quot;</string>
+    <string name="keyboard_5">&quot;5&quot;</string>
+    <string name="keyboard_6">&quot;6&quot;</string>
+    <string name="keyboard_7">&quot;7&quot;</string>
+    <string name="keyboard_8">&quot;8&quot;</string>
+    <string name="keyboard_9">&quot;9&quot;</string>
+    <string name="keyboard_x">X</string>
+    <string name="keyboard_enter">Ввод</string>
+
+    <string name="text_input_code">ВВЕДИТЕ ВАШ ПЕРСОНАЛЬНЫЙ КОД</string>
+
+    <string name="app_name">Выполнение операций</string>
     <string name="action_settings">Настройки</string>
     <string name="serverPathLoc">http://192.168.1.98:8888/</string>
     <string name="serverPath">http://92.53.120.131:8888/</string>
@@ -21,4 +37,15 @@
         <item>Сборка</item>
         <item>Передача готового изделия на склад</item>
     </string-array>
+
+    <item type="id" name="edit_text" />
+
+    <string name="dialog_select">Выбор</string>
+    <string name="dialog_wait">Ждите</string>
+    <string name="dialog_error">Ошибка</string>
+    <string name="dialog_load_data">Загрузка данных</string>
+    <string name="dialog_warning">Внимание</string>
+    <string name="dialog_saving">Сохранение</string>
+    <string name="dialog_save">Сохранено</string>
+    <string name="dialog_ready">Готово</string>
 </resources>
