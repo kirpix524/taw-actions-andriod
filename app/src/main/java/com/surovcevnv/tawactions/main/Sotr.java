@@ -22,13 +22,15 @@ public class Sotr implements Parcelable {
 
     /** Должность */
     public String name_dolgn;
+    public String id_dolgn;
 
 
-    public Sotr(String name_sotr, String id_sotr, String id_role, String name_dolgn) {
+    public Sotr(String name_sotr, String id_sotr, String id_role, String name_dolgn, String id_dolgn) {
         this.name_sotr = name_sotr;
         this.id_sotr = id_sotr;
         this.id_role = id_role;
         this.name_dolgn = name_dolgn;
+        this.id_dolgn = id_dolgn;
     }
 
     protected Sotr(Parcel in) {
@@ -36,6 +38,7 @@ public class Sotr implements Parcelable {
         id_sotr = in.readString();
         id_role = in.readString();
         name_dolgn = in.readString();
+        id_dolgn = in.readString();
     }
 
     public static final Creator<Sotr> CREATOR = new Creator<Sotr>() {
@@ -61,5 +64,6 @@ public class Sotr implements Parcelable {
         parcel.writeString(id_sotr);
         parcel.writeString(id_role);
         parcel.writeString(name_dolgn);
+        parcel.writeString(id_dolgn);
     }
 }

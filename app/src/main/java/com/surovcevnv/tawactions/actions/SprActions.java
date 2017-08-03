@@ -1,5 +1,14 @@
 package com.surovcevnv.tawactions.actions;
 
+import com.surovcevnv.tawactions.R;
+import com.surovcevnv.tawactions.logger.Logger;
+import com.surovcevnv.tawactions.main.Server;
+import com.surovcevnv.tawactions.main.Sotr;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,12 +23,18 @@ public class SprActions {
         sprActions = new ArrayList<>();
     }
 
-    public SprActions(String[] arrActions) {
+    public SprActions(JSONArray arrActions) throws Error{
         sprActions = new ArrayList<>();
-        for (int i=0; i<arrActions.length; i++) {
-            sprActions.add(new Action(i, arrActions[i]));
-        }
+        try {
+            for (int i=0; i<arrActions.length(); i++) {
+                JSONObject act = (JSONObject) arrActions.get(i);
+                sprActions.add(new Action(act.getInt("id_oper"), act.getString("name_oper")));
+            }
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+            throw new Error(e.getMessage());
+        }
     }
 
     public ArrayList<HashMap<String, String>> getArrListSprActions() {
@@ -27,8 +42,8 @@ public class SprActions {
         if (sprActions.size()>0) {
             for (int i=0; i<sprActions.size(); i++) {
                 HashMap<String,String> map = new HashMap<>();
-                map.put("name",sprActions.get(i).getName());
-                map.put("code",""+sprActions.get(i).getCode());
+                map.put("name_oper",sprActions.get(i).getName());
+                map.put("id_oper",""+sprActions.get(i).getCode());
                 map.put("btn","Начать");
                 sprActArrList.add(map);
             }
@@ -49,20 +64,21 @@ public class SprActions {
 
 
     private class Action {
-        private int code;
-        private String name;
+        private int id_oper;
+        private String name_oper;
+
 
         Action(int initCode, String initName) {
-            code = initCode;
-            name = initName;
+            id_oper = initCode;
+            name_oper = initName;
         }
 
         public String getName() {
-            return name;
+            return name_oper;
         }
 
         public int getCode() {
-            return code;
+            return id_oper;
         }
 
     }

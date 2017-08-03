@@ -19,34 +19,15 @@
         android:text="Макет программы учета на производстве"
         android:id="@+id/header" />
     <Button
-        android:text="Приход"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header"
-        android:id="@+id/btnComings" />
-    <Button
         android:text="Действия"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnComings"
+        android:layout_below="@+id/header"
         android:id="@+id/btnActions" />
     <Button
-        android:text="Расход"
+        android:text="Контроль качества"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnActions"
-        android:id="@+id/btnExpenses" />
-    <Button
-        android:text="Остатки"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnExpenses"
-        android:id="@+id/btnRemaining" />
-    <Button
-        android:text="Сбросить остатки и движения"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRemaining"
-        android:visibility="invisible"
-        android:id="@+id/btnInit" />
+        android:id="@+id/btnControl" />
 </RelativeLayout>

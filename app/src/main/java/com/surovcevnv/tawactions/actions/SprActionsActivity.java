@@ -30,15 +30,15 @@ public class SprActionsActivity extends FragmentActivity {
         ListView listViewActions = (ListView)findViewById(R.id.listSprActions);
         final ArrayList<HashMap<String, String>> sprActions = ms.sprActions.getArrListSprActions();
         SimpleAdapter adapterActions = new SimpleAdapter(this, sprActions, R.layout.item_actions,
-                new String[]{"name"},
+                new String[]{"name_oper"},
                 new int[] {R.id.textActionName});
         listViewActions.setAdapter(adapterActions);
         listViewActions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View itemClicked, final int position,
                                     long id) {
-                ms.curActionCode=Integer.parseInt(sprActions.get(position).get("code"));
-                Server.sendMove("start", 0, 0.0, ms.curActionCode);
+                ms.curActionCode=Integer.parseInt(sprActions.get(position).get("id_oper"));
+//                Server.sendMove("start", 0, 0.0, ms.curActionCode);
                 Intent intent=new Intent(SprActionsActivity.this, ActionsActivity.class);
                 startActivity(intent);
                 SprActionsActivity.this.finish();

@@ -24,5 +24,4 @@
         android:text="Завершить текущее действие"
         android:layout_below="@+id/btnStartAction"
         android:id="@+id/btnEndAction"/>
-
 </RelativeLayout>

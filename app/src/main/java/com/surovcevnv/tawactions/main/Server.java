@@ -15,20 +15,6 @@ import java.net.URL;
  */
 
 public class Server {
-    public static void sendInit() {
-        final Singleton ms = Singleton.getInstance();
-        Logger.log(Logger.Level.System, "Server", "Start sending init to server");
-        final JSONObject config = new JSONObject();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                sendData(ms.serverPath+ms.routeInit, config);
-            }
-        }).start();
-
-
-    }
-
     public static void sendRemain(int code, double quant) {
         final Singleton ms = Singleton.getInstance();
         Logger.log(Logger.Level.System, "Server", "Start sending remains to server");

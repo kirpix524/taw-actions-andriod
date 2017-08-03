@@ -8,8 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.surovcevnv.tawactions.R;
+import com.surovcevnv.tawactions.lib.MDialog;
+import com.surovcevnv.tawactions.logger.Logger;
 import com.surovcevnv.tawactions.main.Server;
 import com.surovcevnv.tawactions.main.Singleton;
+import com.surovcevnv.tawactions.main.Sotr;
+
+import org.json.JSONObject;
 
 /**
  * Created by surovcevnv on 07.07.17.
@@ -17,11 +22,21 @@ import com.surovcevnv.tawactions.main.Singleton;
 
 public class ActionsActivity extends FragmentActivity {
     private Singleton ms = Singleton.getInstance();
+    private MDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDialog  = MDialog.getInstance(getSupportFragmentManager());
 
         setContentView(R.layout.activity_actions);
+        if (ms.sprActions==null) {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    loadSprActions(ms.curSotr.id_dolgn);
+                }
+            }).start();
+        }
         refresh();
     }
 
@@ -62,5 +77,27 @@ public class ActionsActivity extends FragmentActivity {
         Server.sendMove("end", 0, 0.0, ms.curActionCode);
         ms.curActionCode=-1;
         refresh();
+    }
+
+    public void loadSprActions(String id_dolgn) {
+        mDialog.showProgress(getString(R.string.dialog_wait), getString(R.string.dialog_load_data));
+        JSONObject config = new JSONObject();
+        try {
+            config.put("id_dolgn",id_dolgn);
+        } catch (Exception e) {
+            Logger.log(Logger.Level.System, "Server", "Error: "+e.toString());
+            mDialog.showBox(getString(R.string.dialog_error),e.getMessage());
+            return;
+        }
+
+        try {
+            JSONObject response = Server.getResponse(ms.serverPath+ms.routeGetSprAct, config);
+            mDialog.showBox("response", response.toString());
+            ms.sprActions = new SprActions(response.getJSONArray("SprAct"));
+        } catch (Exception e) {
+            mDialog.showBox(getString(R.string.dialog_error), e.getMessage());
+            return;
+        }
+        mDialog.hide();
     }
 }

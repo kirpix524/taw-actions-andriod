@@ -21,8 +21,10 @@
     <string name="serverPath">http://92.53.120.131:8888/</string>
     <string name="routeAddMove">addMove/</string>
     <string name="routeAddOst">addOst/</string>
-    <string name="routeInit">init/</string>
     <string name="routeGetOst">getOst/</string>
+    <string name="routeGetSotr">getSotr/</string>
+    <string name="routeGetSprAct">getSprAct/</string>
+    <string name="routeGetAct">getAct/</string>
     <string-array name="spr_nom">
         <item>Доска шлифованая 50см</item>
         <item>Доска шлифованая 100см</item>
